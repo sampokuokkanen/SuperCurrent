@@ -15,6 +15,8 @@ module SuperCurrent
   class SuperSuperCurrent < ActiveSupport::CurrentAttributes
     attribute :__current_hash
 
+    @methods = []
+
     def self.[](key)
       self.__current_hash ||= {}
       self.__current_hash[key] || self.__current_hash[key] = {}
@@ -26,17 +28,18 @@ module SuperCurrent
     end
 
     def self.method_missing(method, *args)
-      return unless method.to_s.end_with?('=')
+      super unless method.to_s.end_with?('=')
 
       attribute_name = method.to_s.chomp('=')
       attribute_value = args.first
 
       class_eval { attribute attribute_name.to_sym }
       public_send "#{attribute_name}=", attribute_value
+      @methods << attribute_name
     end
 
     def self.respond_to_missing?(method, include_private = false)
-      method.to_s.end_with?('=') || super
+      @methods.include?(method.to_s) || method.to_s.end_with?('=') || super
     end
   end
 end

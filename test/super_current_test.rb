@@ -37,4 +37,18 @@ class SuperCurrentControllerTest < ActiveSupport::TestCase
     Current.阿里山國家風景區 = "Alishan National Scenic Area"
     assert_equal "Alishan National Scenic Area", Current.阿里山國家風景區
   end
+
+  test "responds to missing properly" do
+    assert_equal Current.respond_to?(:cat), false
+    Current.cat = true
+    assert_equal Current.respond_to?(:cat), true
+  end
+
+  test "does not respond to ? methods" do
+    assert_equal Current.respond_to?(:cat?), false
+  end
+
+  test "raises if not yet defined" do
+    assert_raises(NoMethodError) { Current.dog }
+  end
 end
