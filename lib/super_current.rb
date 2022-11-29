@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'super_current/version'
-require 'super_current/railtie'
-require 'dry-configurable'
+require "super_current/version"
+require "super_current/railtie"
+require "dry-configurable"
 
 # SuperCurrent makes it easier to use ActiveSupport::CurrentAttributes
 module SuperCurrent
   extend Dry::Configurable
 
-  setting :current_class_name, default: 'Current', reader: true
+  setting :current_class_name, default: "Current", reader: true
 
   # The class that actually has the CurrentAttributes as parent class
   # Named SuperSuperCurrent to avoid conflicts with the SuperCurrent module
@@ -28,9 +28,9 @@ module SuperCurrent
     end
 
     def self.method_missing(method, *args)
-      super unless method.to_s.end_with?('=')
+      super unless method.to_s.end_with?("=")
 
-      attribute_name = method.to_s.chomp('=')
+      attribute_name = method.to_s.chomp("=")
       attribute_value = args.first
 
       class_eval { attribute attribute_name.to_sym }
@@ -39,7 +39,7 @@ module SuperCurrent
     end
 
     def self.respond_to_missing?(method, include_private = false)
-      @methods.include?(method.to_s) || method.to_s.end_with?('=') || super
+      @methods.include?(method.to_s) || method.to_s.end_with?("=") || super
     end
   end
 end

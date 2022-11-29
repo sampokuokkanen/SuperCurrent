@@ -5,14 +5,14 @@ Gem::Specification.new do |s|
   s.version = SuperCurrent::VERSION
   s.authors = ["Sampo Kuokkanen"]
   s.email = ["sampo.kuokkanen@gmail.com"]
-  s.homepage = "https://www.google.com"
+  s.homepage = "https://github.com/sampokuokkanen/SuperCurrent"
   s.summary = "SuperCurrent is a way to add magic to CurrentAttributes."
   s.description = "SuperCurrent adds more fun to your Rails app by making it harder to predict!"
   s.license = "MIT"
 
   s.metadata["homepage_uri"] = s.homepage
   s.metadata["source_code_uri"] = s.homepage
-  s.metadata["changelog_uri"] = s.homepage
+  s.metadata["changelog_uri"] = "#{s.homepage}/blob/main/CHANGELOG.md"
 
   s.files = Dir.chdir(File.expand_path(__dir__)) do
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
