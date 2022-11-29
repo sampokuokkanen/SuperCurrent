@@ -1,4 +1,9 @@
 # SuperCurrent
+
+> A supercurrent is a superconducting current, that is, electric current which flows without  dissipation in a superconductor.
+>
+>*Wikipedia*
+
 `SuperCurrent` takes away the need to define a `Current` class and instead makes it available from anywhere in your app without having to define it. 
 
 This means that your test coverage will not suffer from `ActiveSupport::CurrentAttributes`!
